@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "q2-ecs-cluster" {
-  name =  ${var.project_name}
+  name =  var.project_name
 }
 
 resource "aws_ecs_task_definition" "q2-task" {
@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "q2-task" {
   container_definitions = jsonencode([
       {
           name          ="helloWorld"
-          image         =${var.image_name}
+          image         =var.image_name
           essential     = true
           portMappings = [{
              protocol      = "tcp"
@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "q2-task" {
 }
 
 resource "aws_ecs_service" "main" {
- name                               =  ${var.project_name}
+ name                               =  var.project_name
  cluster                            = aws_ecs_cluster.q2-ecs-cluster.id
  task_definition                    = aws_ecs_task_definition.q2-task.arn
  desired_count                      = 2
