@@ -2,7 +2,7 @@
 resource "aws_vpc" "q2-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    "Name" = ${project_name}+"vpc"
+    "Name" = ${project_name}+"-vpc"
   }
 }
 
@@ -10,7 +10,7 @@ resource "aws_vpc" "q2-vpc" {
 resource "aws_internet_gateway" "q2-gw" {
   vpc_id = aws_vpc.q2-vpc.id
   tags = {
-    "Name" = ${project_name}+"gw"
+    "Name" = ${project_name}+"-gw"
   }
 }
 
