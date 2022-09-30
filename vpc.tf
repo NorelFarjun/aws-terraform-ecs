@@ -2,7 +2,7 @@
 resource "aws_vpc" "q2-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    "Name" = "q2-vpc"
+    "Name" = ${project_name}+"vpc"
   }
 }
 
@@ -10,7 +10,7 @@ resource "aws_vpc" "q2-vpc" {
 resource "aws_internet_gateway" "q2-gw" {
   vpc_id = aws_vpc.q2-vpc.id
   tags = {
-    "Name" = "q2-gw"
+    "Name" = ${project_name}+"gw"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_subnet" "public-subnet1" {
     tags = {
       "Name" = "pub_subnet1"
     }
-    availability_zone = "eu-central-1a"
+    availability_zone = ${var.availability _zone_a}
     map_public_ip_on_launch = true  
 }
 
@@ -32,7 +32,7 @@ resource "aws_subnet" "public-subnet2" {
     tags = {
       "Name" = "pub_subnet2"
     }
-    availability_zone = "eu-central-1b"
+    availability_zone = ${var.availability _zone_b}
     map_public_ip_on_launch = true   
 }
 
@@ -43,7 +43,7 @@ resource "aws_subnet" "privet-subnet1" {
   tags = {
     "Name" = "privet_subnet1"
   }
-  availability_zone = "eu-central-1a" 
+  availability_zone = ${var.availability _zone_a}
   map_public_ip_on_launch = false
 }
 
@@ -54,6 +54,6 @@ resource "aws_subnet" "privet-subnet2" {
     tags = {
       "Name" = "privet_subnet2"
     }
-    availability_zone = "eu-central-1b"
+    availability_zone = ${var.availability _zone_b}
     map_public_ip_on_launch = false
 }
