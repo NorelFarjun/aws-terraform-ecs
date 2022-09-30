@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "q2-ecs-cluster" {
-  name = "q2-helloWorld-cluster"
+  name = ${project_name}+"-cluster"
 }
 
 resource "aws_ecs_task_definition" "q2-task" {
@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "q2-task" {
   container_definitions = jsonencode([
       {
           name          ="helloWorld"
-          image         =""
+          image         =${var.image_name}
           essential     = true
           portMappings = [{
              protocol      = "tcp"
