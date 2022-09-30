@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "q2-ecsTaskExecutionRole"
+  name = ${project_name}+"-ecsTaskExecutionRole"
  
   assume_role_policy = <<EOF
 {
