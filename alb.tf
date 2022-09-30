@@ -1,5 +1,5 @@
 resource "aws_lb" "q2-alb" {
-  name               = "q2-alb"
+  name               = ${project_name}+"-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.q2-alb.id]
@@ -9,7 +9,7 @@ resource "aws_lb" "q2-alb" {
 }
  
 resource "aws_alb_target_group" "q2-lb-tg" {
-  name        = "q2-lb-tg"
+  name        = ${project_name}+"-lb-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = aws_vpc.q2-vpc.id
