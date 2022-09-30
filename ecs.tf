@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "q2-task" {
   container_definitions = jsonencode([
       {
           name          ="helloWorld"
-          image         =var.image_name
+          image         =var.image
           essential     = true
           portMappings = [{
              protocol      = "tcp"
