@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "q2-ecs-cluster" {
-  name = ${project_name}+"-cluster"
+  name = ${project_name}
 }
 
 resource "aws_ecs_task_definition" "q2-task" {
@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "q2-task" {
 }
 
 resource "aws_ecs_service" "main" {
- name                               = "q2-helloWorld-service"
+ name                               = ${project_name}
  cluster                            = aws_ecs_cluster.q2-ecs-cluster.id
  task_definition                    = aws_ecs_task_definition.q2-task.arn
  desired_count                      = 2
