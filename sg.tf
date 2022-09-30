@@ -1,5 +1,5 @@
 resource "aws_security_group" "q2-alb" {
-    name   =  ${var.project_name}
+    name   =  var.project_name
     vpc_id = aws_vpc.q2-vpc.id
 
   ingress {
@@ -19,7 +19,7 @@ resource "aws_security_group" "q2-alb" {
 }
 
 resource "aws_security_group" "q2-ecs-tasks" {
-  name   = ${var.project_name}
+  name   = var.project_name
   vpc_id = aws_vpc.q2-vpc.id
  
   ingress {
