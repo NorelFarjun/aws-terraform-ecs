@@ -1,8 +1,8 @@
 resource "aws_security_group" "q2-alb" {
-    name   = "q2-alb-sg"
+    name   = ${project_name}+"-alb-sg"
     vpc_id = aws_vpc.q2-vpc.id
 
-      ingress {
+  ingress {
    protocol         = "tcp"
    from_port        = 80
    to_port          = 80
@@ -19,7 +19,7 @@ resource "aws_security_group" "q2-alb" {
 }
 
 resource "aws_security_group" "q2-ecs-tasks" {
-  name   = "q2-ecs_tasks"
+  name   = ${project_name}+"-ecs-tasks"
   vpc_id = aws_vpc.q2-vpc.id
  
   ingress {
