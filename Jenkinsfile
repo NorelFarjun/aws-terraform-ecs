@@ -23,7 +23,7 @@ pipeline {
         
         stage('echo') {
             steps {
-                sh 'echo ok'
+                sh 'ls -la'
             }
         }
         
