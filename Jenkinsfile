@@ -33,7 +33,7 @@ pipeline {
             steps {         
                  sh '''
                    cd aws-terraform-ecs
-                   terraform init
+                   terraform init -no-color
                    terraform plan -no-color
                 '''
             }
