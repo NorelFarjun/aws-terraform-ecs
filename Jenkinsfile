@@ -21,10 +21,9 @@ pipeline {
             }
         }
         
-        stage('git pull') {
+        stage('echo') {
             steps {
-                sh 'git init'
-                sh 'git pull https://github.com/NorelFarjun/aws-terraform-ecs.git'
+                sh 'echo ok'
             }
         }
         
