@@ -10,7 +10,7 @@ pipeline {
         TF_VAR_availability_zone_a="$AWS_REGION"+"a"
         TF_VAR_availability_zone_b="$AWS_REGION"+"b"
         TF_VAR_project_name="testing"
-        TF_VAR_image="https://hub.docker.com/repository/docker/norelfarjun/hello-world-python-5000"
+        TF_VAR_image="https://hub.docker.com/repository/docker/norelfarjun/python80"
     }
 
     stages {
