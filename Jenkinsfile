@@ -23,7 +23,7 @@ pipeline {
         
         stage('echo') {
             steps {
-                dir("aws-terraform-ecs"){
+                dir("aws-terraform-eck"){
                     sh 'ls -la'
                 }
             }
@@ -31,8 +31,8 @@ pipeline {
         
         stage('terraform init and plan') {
             steps {         
-                   dir("aws-terraform-ecs"){sh "terraform init -no-color"}
-                   dir("aws-terraform-ecs"){ah "terraform plan -no-color"}
+                   //dir("aws-terraform-ecs"){sh "terraform init -no-color"}
+                   //dir("aws-terraform-ecs"){ah "terraform plan -no-color"}
             }
         }
         
