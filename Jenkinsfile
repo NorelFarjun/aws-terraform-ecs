@@ -31,11 +31,8 @@ pipeline {
         
         stage('terraform init and plan') {
             steps {         
-                 sh '''
-                   cd aws-terraform-ecs
-                   terraform init -no-color
-                   terraform plan -no-color
-                '''
+                   dir("aws-terraform-ecs"){terraform init -no-color}
+                   dir("aws-terraform-ecs"){terraform plan -no-color}
             }
         }
         
