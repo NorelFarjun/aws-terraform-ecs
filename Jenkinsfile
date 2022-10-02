@@ -25,7 +25,7 @@ pipeline {
             steps {
                 sh "git init"
                 sh "git pull https://github.com/NorelFarjun/aws-terraform-ecs.git"
-                sh "pwd"
+                sh "ls -la"
             }
         }
         
