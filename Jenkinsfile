@@ -23,8 +23,8 @@ pipeline {
         
         stage('echo') {
             steps {
-                dir("aws-terraform-eck"){
-                    sh 'ls -la'
+                dir("aws-terraform-ecs"){
+                    sh 'pwd'
                 }
             }
         }
