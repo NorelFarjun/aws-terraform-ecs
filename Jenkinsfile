@@ -24,14 +24,15 @@ pipeline {
         stage('git pull') {
             steps {
                 sh "git init"
-                sh "git pull https://github.com/NorelFarjun/aws-terraform-ecs.git" 
+                sh "git pull https://github.com/NorelFarjun/aws-terraform-ecs.git"
+                sh "pwd"
             }
         }
         
         stage('terraform init and plan') {
-            steps {         
-                dir("aws-terraform-ecs"){sh "terraform init -no-color"}
-                dir("aws-terraform-ecs"){ah "terraform plan -no-color"}
+            steps {
+                sh "terraform init -no-color"
+                sh "terraform plan -no-color"
             }
         }
         
