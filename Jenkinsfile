@@ -35,6 +35,11 @@ pipeline {
                 sh "terraform plan -no-color"
             }
         }
+        stage('test') {
+            steps {
+                sh "echo test scrips"
+            }
+        }
         
         stage('terraform apply') {
             steps {
