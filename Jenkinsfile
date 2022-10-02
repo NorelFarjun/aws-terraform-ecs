@@ -21,11 +21,10 @@ pipeline {
             }
         }
         
-        stage('echo') {
+        stage('git pull') {
             steps {
-                dir("aws-terraform-ecs"){
-                    sh 'pwd'
-                }
+                sh "git init"
+                sh "git pullhttps://github.com/NorelFarjun/aws-terraform-ecs.git" 
             }
         }
         
