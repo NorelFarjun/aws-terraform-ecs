@@ -4,6 +4,7 @@ pipeline {
         terraform 'terraform-11'
     }
     environment{
+        GITHUB_TOKEN=credentials('github_token')
         AWS_ACCESS_KEY_ID=credentials('Accecs_key_ID')
         AWS_SECRET_ACCESS_KEY=credentials('Seceret_accsess_key')
         AWS_REGION="us-east-2"
@@ -23,16 +24,29 @@ pipeline {
         
         stage('git pull') {
             steps {
-                sh "git init"
-                sh "git pull https://github.com/NorelFarjun/aws-terraform-ecs.git"
-                sh "ls -la"
+                sh '''
+                    mkdir terraform_state
+                    cd terraform_state
+                    git init
+                    git pull https://github.com/NorelFarjun/jenkins-exp-terraform-state.git master
+                    cd ..
+                    cp -r terraform_state/. ./
+                    mkdir terraform
+                    cd terraform
+                    git init
+                    git pull https://github.com/NorelFarjun/aws-terraform-ecs.git
+                    cd ..
+                    cp -r terraform_state/. ./
+                '''
             }
         }
         
         stage('terraform init and plan') {
             steps {
-                sh "terraform init -no-color"
-                sh "terraform plan -no-color"
+                sh '''
+                    terraform init -no-color
+                    terraform plan -no-color
+                '''
             }
         }
         stage('test') {
@@ -44,6 +58,26 @@ pipeline {
         stage('terraform apply') {
             steps {
                 sh 'echo terraform apply'
+            }
+        stage('push new terraform state to repo') {
+            steps {
+                sh '''
+                    mkdir new_terraform_state
+                    cd new_terraform_state
+                    cp -r terraform/*.tfstate new_terraform_state
+                    cd new_terraform_state
+                    git init
+                    git add *.tfstate
+                    git commit -m new "state: $(date +"%H:%M:%S---%m_%d_%Y")"
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/jenkins-exp-terraform-state.git master
+
+                '''
+            }
+        }
+            
+        stage('clean workspace') {
+            steps {
+                cleanWs()
             }
         }
     }
