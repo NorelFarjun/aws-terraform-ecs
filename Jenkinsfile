@@ -24,7 +24,7 @@ pipeline {
         stage('git pull') {
             steps {
                 sh "git init"
-                sh "git pullhttps://github.com/NorelFarjun/aws-terraform-ecs.git" 
+                sh "git pull https://github.com/NorelFarjun/aws-terraform-ecs.git" 
             }
         }
         
