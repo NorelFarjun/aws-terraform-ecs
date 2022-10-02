@@ -11,8 +11,8 @@ resource "aws_ecs_task_definition" "q2-task" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   container_definitions = jsonencode([
       {
-          name          ="helloWorld"
-          image         =var.image
+          name          = "helloWorld"
+          image         = var.image
           essential     = true
           portMappings = [{
              protocol      = "tcp"
