@@ -78,7 +78,7 @@ pipeline {
             }
         }
         
-        stage('clean workspace') {
+        stage('clean workspace after apply') {
             steps {
                 cleanWs()
             }
