@@ -13,8 +13,63 @@ pipeline {
         TF_VAR_project_name="testing"
         TF_VAR_image="https://hub.docker.com/repository/docker/norelfarjun/python80"
     }
+    
+    
+    stages{
+    
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+    
+        stage('git pull') {
+            steps {
+                sh '''
+                    mkdir terraform_state
+                    cd terraform_state
+                    git init
+                    git pull https://github.com/NorelFarjun/jenkins_server_tf_state.git
+                    cd ..
+                    cp -r terraform_state/. ./
+                    mkdir terraform
+                    cd terraform
+                    git init
+                    git pull https://github.com/NorelFarjun/aws-terraform-ecs.git
+                    cd ..
+                    cp -r terraform_state/. ./
+                '''
+            }
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
-    stages {
+
+
+
+
+
+/*    stages {
         
         stage('clean workspace') {
             steps {
@@ -83,3 +138,4 @@ pipeline {
     }
 }
 
+*/
