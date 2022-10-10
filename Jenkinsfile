@@ -56,6 +56,33 @@ pipeline {
                 sh "echo test scrips"
             }
         }
+        
+        stage('terraform apply') {
+            steps {
+                sh 'echo terraform apply'
+            }
+        }
+        
+        stage('push new terraform state to repo') {
+            steps {
+                sh '''
+                    mkdir new_terraform_state
+                    cd new_terraform_state
+                    cp -r terraform/*.tfstate new_terraform_state
+                    git init
+                    git add *.tfstate
+                    git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/jenkins_server_tf_state.git master
+
+                '''
+            }
+        }
+        
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
     
     
     
