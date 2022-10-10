@@ -78,7 +78,11 @@ pipeline {
             }
         }
         
-
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
     
     
     
