@@ -27,6 +27,8 @@ pipeline {
         stage('git pull') {
             steps {
                 sh '''
+                    var=${GITHUB_TOKEN}
+                    echo $var
                     mkdir terraform_state
                     cd terraform_state
                     git init
