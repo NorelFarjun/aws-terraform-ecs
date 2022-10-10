@@ -4,7 +4,7 @@ pipeline {
         terraform 'terraform-11'
     }
     environment{
-        GITHUB_TOKEN=credentials('github_token')
+        GITHUB_TOKEN=credentials('GitHub_token')
         AWS_ACCESS_KEY_ID=credentials('Accecs_key_ID')
         AWS_SECRET_ACCESS_KEY=credentials('Seceret_accsess_key')
         AWS_REGION="us-east-2"
