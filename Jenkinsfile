@@ -68,7 +68,7 @@ pipeline {
                 sh '''
                     mkdir new_terraform_state
                     cd new_terraform_state
-                    cp -r ../*.tfstate ./
+                    mv ../*.tfstate ./
                     git init
                     git add *.tfstate
                     git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
