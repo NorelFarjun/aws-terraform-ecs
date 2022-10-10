@@ -79,7 +79,7 @@ pipeline {
                     git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
                     var=${GITHUB_TOKEN}
                     echo $var
-                    git push -f --set-upstream https://${GITHUB_TOKEN}@${STATE_REPO} main
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@$github.com/NorelFarjun/testing3.git main
 
                 '''
             }
