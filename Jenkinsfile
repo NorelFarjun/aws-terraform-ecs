@@ -8,6 +8,7 @@ pipeline {
         AWS_ACCESS_KEY_ID=credentials('Accecs_key_ID')
         AWS_SECRET_ACCESS_KEY=credentials('Seceret_accsess_key')
         AWS_REGION="us-east-2"
+        STATE_REPO=credentials('State_reto')
         TF_VAR_availability_zone_a="$AWS_REGION"+"a"
         TF_VAR_availability_zone_b="$AWS_REGION"+"b"
         TF_VAR_project_name="testing"
@@ -29,7 +30,7 @@ pipeline {
                     mkdir terraform_state
                     cd terraform_state
                     git init
-                    git pull https://github.com/NorelFarjun/jenkins_server_tf_state.git main
+                    git pull https://${STATE_REPO} main
                     cp -r ././. ./..
                     cd ..
                     mkdir terraform
@@ -37,7 +38,6 @@ pipeline {
                     git init
                     git pull https://github.com/NorelFarjun/aws-terraform-ecs.git
                     cp -r ././. ./..
-                    cd ..
                 '''
             }
         }
@@ -72,7 +72,7 @@ pipeline {
                     git init
                     git add *.tfstate
                     git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
-                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/jenkins_server_tf_state.git master
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@${STATE_REPO} main
 
                 '''
             }
