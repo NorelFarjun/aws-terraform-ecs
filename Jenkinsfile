@@ -74,6 +74,8 @@ pipeline {
                     git config –global user.email "norelp123@gmail.com"
                     git add *.tfstate
                     git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
+                    var=${GITHUB_TOKEN}
+                    echo $var
                     git push -f --set-upstream https://${GITHUB_TOKEN}@${STATE_REPO} main
 
                 '''
