@@ -59,6 +59,7 @@ pipeline {
             steps {
                 sh 'echo terraform apply'
             }
+        }
         stage('push new terraform state to repo') {
             steps {
                 sh '''
@@ -81,4 +82,4 @@ pipeline {
         }
     }
 }
-}
+
