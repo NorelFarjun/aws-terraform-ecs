@@ -31,7 +31,7 @@ pipeline {
                     git init
                     git pull https://github.com/NorelFarjun/jenkins_server_tf_state.git main
                     cd ..
-                    cd -a /terraform_state/. /./
+                    cp -a /terraform_state/. /./
                 '''
             }
         }
