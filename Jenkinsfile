@@ -29,7 +29,7 @@ pipeline {
                     mkdir terraform_state
                     cd terraform_state
                     git init
-                    git pull https://github.com/NorelFarjun/jenkins_server_tf_state.git
+                    git pull https://github.com/NorelFarjun/jenkins_server_tf_state.git main
                     cd ..
                     cp -r terraform_state/. ./
                     mkdir terraform
