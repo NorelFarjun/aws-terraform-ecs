@@ -41,6 +41,15 @@ pipeline {
                 '''
             }
         }
+        
+        stage('terraform init and plan') {
+            steps {
+                sh '''
+                    terraform init -no-color
+                    terraform plan -no-color
+                '''
+            }
+        }
     
     
     
