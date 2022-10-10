@@ -31,13 +31,7 @@ pipeline {
                     git init
                     git pull https://github.com/NorelFarjun/jenkins_server_tf_state.git main
                     cd ..
-                    cp -r terraform_state/* ./
-                    mkdir terraform
-                    cd terraform
-                    git init
-                    git pull https://github.com/NorelFarjun/aws-terraform-ecs.git
-                    cd ..
-                    cp -r terraform_state/. ./
+                    ls
                 '''
             }
         }
