@@ -28,7 +28,7 @@ pipeline {
                     mkdir terraform_state
                     cd terraform_state
                     git init
-                    git pull https://github.com/NorelFarjun/jenkins-exp-terraform-state.git master
+                    git pull https://github.com/NorelFarjun/jenkins_server_tf_state.git
                     cd ..
                     cp -r terraform_state/. ./
                     mkdir terraform
@@ -65,11 +65,10 @@ pipeline {
                     mkdir new_terraform_state
                     cd new_terraform_state
                     cp -r terraform/*.tfstate new_terraform_state
-                    cd new_terraform_state
                     git init
                     git add *.tfstate
-                    git commit -m new "state: $(date +"%H:%M:%S---%m_%d_%Y")"
-                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/jenkins-exp-terraform-state.git master
+                    git commit -m "state: $(date +"%H:%M:%S---%m_%d_%Y")"
+                    git push -f --set-upstream https://${GITHUB_TOKEN}@github.com/NorelFarjun/jenkins_server_tf_state.git master
 
                 '''
             }
